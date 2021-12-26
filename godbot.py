@@ -28,11 +28,12 @@ BANNED_RIGHTS = ChatBannedRights(
     embed_links=True,
 )
 
-@god.on(events.NewMessage)
+@god.on(events.ChatAction)
 async def _(e):
-  if e.is_channel:
-    user = await e.chat.get_user()
-    await e.client(EditBannedRequest(e.chat_id, user.id, BANNED_RIGHTS))
+  h = await e.message
+  ee = await h.sender_id
+  if h.is_channel:
+    await e.client(EditBannedRequest(e.chat_id, ee, BANNED_RIGHTS))
     await god.send_message(e.chat_id, "**SOMEONE IS SENDING MESSAGE VIA CHANNEL I BANNED THAT SHIT**")
   else:
     await god.send_message(e.chat_id, "**I can't ban you. Why???**")
