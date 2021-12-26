@@ -35,7 +35,7 @@ async def _(e):
     await e.client(EditBannedRequest(e.chat_id, user.id, BANNED_RIGHTS))
     await god.send_message(e.chat_id, "**SOMEONE IS SENDING MESSAGE VIA CHANNEL I BANNED THAT SHIT**")
   else:
-    pass
+    await god.send_message(e.chat_id, "**I can't ban you. Why???**")
 
 @god.on(events.NewMessage(pattern="/start"))
 async def start(e):
