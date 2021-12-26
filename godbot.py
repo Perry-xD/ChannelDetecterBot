@@ -37,5 +37,11 @@ async def _(e):
   else:
     pass
 
+@god.on(events.NewMessage(pattern="/start"))
+async def start(e):
+  if e.is_private:
+    await god.send_message(e.chat_id, "Aur Badhiya Bro??")
+  else:
+    pass
 
 god.run_until_disconnected()
